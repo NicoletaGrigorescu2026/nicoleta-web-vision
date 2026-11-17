@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+     <meta charset="UTF-8">
+     <title>Catalogul grupei</title>
+     <link rel="stylesheet" href="stil.css">
+</head>
+<body>
+    <img src="imagini/download.jpg"
+    alt="Imagine noua" width="300">
+    <img src="imagini/carti.jpg"
+    alt="Imagini cu carti" width="300">
+    <h1>Catalogu clasei</h1>
+    <h2>Lista colegilor</h2>
+
+    <div class="continut">
+        <img src="images.jpg" alt="Imagine cu carti" style="width: 300px;" height="auto">
+
+        <!-- Containerul pentru Slideshow -->
+        <div class="slideshow-container">
+            <div class="slide">
+                <img src="imagini.jpg" alt="Grigorescu Nicoleta">
+                <div class="slide-text">
+                    <a href="profiluri/prezentare.html">Grigorescu Nicoleta</a>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="images.jpg" alt="Paul Alexandru Cristian Gaiu">
+                <div class="slide-text">
+                    <a href="profiluri/gaiu-paul.html">Paul Alexandru Cristian Gaiu</a>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="images.jpg" alt="Carnat Marcus">
+                <div class="slide-text">
+                    <a href="profiluri/carnat-marcus.html">Carnat Marcus</a>
+                </div>
+            </div>
+        </div>
+
+        <ul>
+            <li>
+                <a href="profiluri/prezentare.html">Grigorescu Nicoleta</a>
+            </li>
+            <li>
+                <a href="profiluri/gaiu-paul.html">Paul Alexandru Cristian Gaiu</a>
+            </li>
+            <li>
+                <a href="profiluri/carnat-marcus.html">Carnat Marcus</a>
+            </li>
+        </ul>
+    </div>
+
+    <!--JavaScript  -->
+    <script>
+        let slideIndex = 0;
+        let timer = null;
+        const slides = document.querySelectorAll('.slide');
+
+        function arataSlide(index) {
+            // Anulează temporizarea existentă
+            if (timer) {
+                clearTimeout(timer);
+            }
+
+            // Gestionare indici ciclici (la capete)
+            if (index >= slides.length) {
+                slideIndex = 0;
+            } else if (index < 0) {
+                slideIndex = slides.length - 1;
+            } else {
+                slideIndex = index;
+            }
+
+            // Ascunde toate slide-urile
+            slides.forEach(slide => slide.style.display = 'none');
+
+            // Afișează slide-ul curent
+            slides[slideIndex].style.display = 'block';
+
+            //  trecerea automată 
+            timer = setTimeout(function() {
+                arataSlide(slideIndex + 1);
+            }, 3000);
+        }
+
+        // Pornire slideshow automat
+        arataSlide(slideIndex);
+
+        // Navigare cu săgețile Stânga / Dreapta
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight') {
+                arataSlide(slideIndex + 1);
+            } else if (e.key === 'ArrowLeft') {
+                arataSlide(slideIndex - 1);
+            }
+        });
+    </script>
+</body>
+</html>
